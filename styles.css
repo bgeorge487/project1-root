@@ -1,0 +1,15 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    margin: 0rem;
+    color: white;
+    overflow: scroll;
+}
+.flag, .map{
+    position: absolute;
+}
+.container {
+    width: 156vmin;
+    height: 46vmin;
+}
