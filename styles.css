@@ -1,15 +1,43 @@
 body {
-    height: 100vh;
-    width: 100vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 100%;
     background-color: black;
-    margin: 0rem;
+    width: 1000px;
+    margin: 0 auto;
+    border: 4px solid white;
+    padding: 1em;
+}
+
+h1 {
     color: white;
-    overflow: scroll;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
-.flag, .map{
-    position: absolute;
+ul {
+    list-style: none;
+    padding-top: 15px;
+    padding-left: 15%;
 }
-.container {
-    width: 156vmin;
-    height: 46vmin;
+ul > li {
+    padding: 5px;
+    margin: 5px;
+    display: inline;
+    align-items: center;
+    cursor: pointer;
+}
+
+li > img {
+    width: 200px;
+}
+
+p{
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+p > img {
+    width: 85%;
+    
 }
