@@ -1,62 +1,57 @@
-const $ = (id) => { return document.getElementById(id); }
+//Youtube Lecture code adjusted https://www.youtube.com/watch?v=NMXrdrGx9B8
+"use strict"
+const $ = (id) => { return document.getElementById(id)}
 
 window.onload = () => {
-
-    const displayText = $("#display-text");
     const imageList = $("image-list"); //ul element
-    const flagsAndMaps = imageList.querySelector("li");
+    const displayText = $("display-text"); //h1 element
+    const mainDisplay = $("main-display");
 
-    for (flag in flagsAndMaps) {
-        flag.onmouseover = () => {
-            displayText.textContent = `${flag.getAttribute("title")}`;
-        }
-    }
-    
+   //Per the note below, this is returning a NodeList not an array
+    var flagList = imageList.querySelectorAll("li img");    
+
+    //List of map images
+    var mapList = imageList.querySelectorAll("li a");
+
+    //Trying the for loop:
+    mapList.forEach( mapImage => {
+    //Preload map images?
+    // const mapImage = new Image();
+    mapImage.src = mapList.href;
+
+    //Since it's a list you must use forEach()
+    flagList.forEach(flagImage => {      
+        //Add the event listener for each image
+        flagImage.addEventListener("mouseover", () => {
+            mainDisplay.src = mapList.href;
+            displayText.textContent = flagImage.nextElementSibling.getAttribute("title");
+        })
+    }) //end flag forEach
+}); //end map forEach
 }
+    
 
 
-
-
-// //Youtube Lecture code adjusted https://www.youtube.com/watch?v=NMXrdrGx9B8
-// "use strict"
-// const $ = (id) => { return document.getElementById(id)}
+// //Dr. J's help
+// const $ = (id) => { return document.getElementById(id); }
 
 // window.onload = () => {
+
+//     const displayText = $("display-text");  //using getElementById shouldn't have a # in front
 //     const imageList = $("image-list"); //ul element
-//     const flagList = $("country-flag"); //li > img elements
-//     const displayText = $("display-text"); //h1 element
-//     const mainDisplay = $("main-display"); //p element housing the main display (maps)
 
-//     var mapImages = imageList.getElementsByTagName("a");
-//     var flagImages = imageList.getElementsByTagName("img");    
+//     //returns a NodeList, not an array!
+//     const flagsAndMaps = imageList.querySelectorAll("li img");  //get the images
 
-//     var i, mapImage, link;
-//     for (i = 0; i < mapImages.length; i++) {
+//     flagsAndMaps.forEach(flagImage => {
+//         //for each of the flag images, add a listener
+//         flagImage.addEventListener("mouseover", () => {
+//             displayText.textContent = flagImage.nextElementSibling.getAttribute("title");
 
-//         //preload the image
-//         mapImage = new Image();
-//         mapImage.src = mapImages[i].getAttribute("href");
+//         });  //end add event listener
+//     });
 
-//         //Attach the event handler to the FLAGS
-//         var j, flag;
-//         for (j = 0; j < flagImages.length; j++ ) {
-//             flag = flagImages[j];
-//             flag.onmouseover = (e) => {
-//                 flag = this; //Hopefully you work
-            
-//                 //set the new image and caption
-//                 //mainDisplay.src = link.getAttribute("href");
-//                 displayText.textContent = mapImages.getAttribute("title");
-            
-//                 //Cancel default action of the event            
-//                 if(e.preventDefault) {e.preventDefault();}
-                
-//         }
-//     }
-//     }
-// }
-
-
+// }// end window onload
 
 //Code found in the book below
 /**Shamelessly stolen from the book/youtube lecture */
