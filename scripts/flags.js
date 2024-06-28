@@ -8,26 +8,26 @@ window.onload = () => {
     const mainDisplay = $("main-display");
 
    //Per the note below, this is returning a NodeList not an array
-    var flagList = imageList.querySelectorAll("li img");    
+    var flagList = imageList.querySelectorAll("li img");     
 
-    //List of map images
-    var mapList = imageList.querySelectorAll("li a");
-
-    //Trying the for loop:
-    mapList.forEach( mapImage => {
-    //Preload map images?
-    // const mapImage = new Image();
-    mapImage.src = mapList.href;
-
+    
     //Since it's a list you must use forEach()
     flagList.forEach(flagImage => {      
         //Add the event listener for each image
         flagImage.addEventListener("mouseover", () => {
-            mainDisplay.src = mapList.href;
+            mainDisplay.src = flagImage.nextElementSibling.getAttribute("href")
             displayText.textContent = flagImage.nextElementSibling.getAttribute("title");
         })
     }) //end flag forEach
-}); //end map forEach
+
+    //Reset display text on mouseout. Need to make it smoother somehow.
+    imageList.addEventListener("mouseout", () => {
+        
+        displayText.textContent = "Countries and Flags";
+    })
+
+
+
 }
     
 
